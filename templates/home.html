@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastebin Home</title>
+</head>
+<body>
+    <h1>Welcome to the Pastebin</h1>
+    <a href="{% url 'create_paste' %}">Create a New Paste</a>
+    <h2>Past Pastes:</h2>
+    <ul>
+        {% for paste in pastes %}
+            <li>
+                <a href="{% url 'view_encrypted_paste' paste.id %}">{{ paste.created }} - {{ paste.content|truncatewords:10 }}</a>
+            </li>
+        {% empty %}
+            <li>No pastes available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
