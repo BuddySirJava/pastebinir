@@ -1,4 +1,9 @@
+import hashlib
+import random
+from datetime import timezone
 from django.db import models
+
+
 
 
 class Language(models.Model):
@@ -21,8 +26,10 @@ class User(models.Model):
 
 
 class Paste(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.CharField(max_length=6, primary_key=True, editable=False)
     created = models.DateTimeField(auto_now_add=True)
+    one_time = models.BooleanField(default=False)
+    view_count = models.IntegerField(default=0)
     expires = models.DateTimeField(blank=True, null=True)
     lang = models.ForeignKey(Language, on_delete=models.CASCADE, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default=None)

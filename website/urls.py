@@ -1,9 +1,15 @@
 # urls.py
+from django.conf.urls import handler404
 from django.urls import path
-from .views import create_paste, view_encrypted_paste, home
+from .views import create_paste, view_encrypted_paste, history, err404, about
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('paste/create/', create_paste, name='create_paste'),
-    path('paste/<int:paste_id>/', view_encrypted_paste, name='view_encrypted_paste'),
+    path('', create_paste, name='create_paste'),
+    path('history/', history, name='history'),
+    path('about/',about , name='about'),
+
+    path('<str:paste_id>/', view_encrypted_paste, name='view_encrypted_paste'),
+
 ]
+handler404 = err404
+

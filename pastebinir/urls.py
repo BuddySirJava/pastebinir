@@ -20,6 +20,8 @@ from django.contrib import admin  # Correct import for admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Admin URL
-    path('', include('website.urls'))  # Include URLs from the 'website' app
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+    path('', include('website.urls')),  # Include URLs from the 'website' app
+
 ]
